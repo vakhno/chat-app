@@ -42,7 +42,7 @@ export const signup = async (req, res) => {
 		}
 	} catch (error) {
 		console.log('Signup error');
-		res.status(500).json({ error: 'Internal Server Error' });
+		res.status(500).json({ error: 'Internal Server Error (Signup error)' });
 	}
 };
 
@@ -63,7 +63,7 @@ export const login = async (req, res) => {
 		});
 	} catch (error) {
 		console.log('Login error');
-		res.status(500).json({ error: 'Internal Server Error' });
+		res.status(500).json({ error: 'Internal Server Error (Login error)' });
 	}
 };
 
@@ -73,6 +73,6 @@ export const logout = (req, res) => {
 		res.status(200).json({ message: 'Succesfull logout' });
 	} catch (error) {
 		console.log('Logout error');
-		res.status(500).json({ error: 'Internal Server Error' });
+		res.status(500).json({ error: 'Internal Server Error (Logout error)' });
 	}
 };
