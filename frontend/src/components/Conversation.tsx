@@ -1,8 +1,11 @@
 import useConversation from '../zustand/useConversation';
+import { useGetLastMessage } from '../hooks/useGetMessages';
 
 const Conversation = ({ conversation, lastIndex }) => {
 	const { selectedConversation, setSelectedConversation } = useConversation();
+	const { lastMessage } = useGetLastMessage(conversation._id);
 	const isSelected = selectedConversation?._id === conversation._id;
+
 	return (
 		<>
 			<div
@@ -17,7 +20,10 @@ const Conversation = ({ conversation, lastIndex }) => {
 				</div>
 				<div className="flex flex-col flex-1">
 					<div className="flex gap-3 justify-between">
-						<p className="fonr-bold text-gray-200">{conversation.fullName}</p>
+						<div className="flex flex-col">
+							<p className="font-bold text-gray-200">{conversation.fullName}</p>
+							<p className=" text-gray-200">{lastMessage}</p>
+						</div>
 						<span className="text-xl">{':]'}</span>
 					</div>
 				</div>
