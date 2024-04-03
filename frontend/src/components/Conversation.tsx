@@ -1,10 +1,13 @@
 import useConversation from '../zustand/useConversation';
 import { useGetLastMessage } from '../hooks/useGetMessages';
+import useSocket from '../zustand/useSocket';
 
 const Conversation = ({ conversation, lastIndex }) => {
 	const { selectedConversation, setSelectedConversation } = useConversation();
 	const { lastMessage } = useGetLastMessage(conversation._id);
 	const isSelected = selectedConversation?._id === conversation._id;
+	const { onlineUsers } = useSocket();
+	const isOnline = onlineUsers.includes(conversation._id);
 
 	return (
 		<>
@@ -13,7 +16,7 @@ const Conversation = ({ conversation, lastIndex }) => {
 				${isSelected ? 'bg-sky-500' : ''}
 				`}
 				onClick={() => setSelectedConversation(conversation)}>
-				<div className="avatar online">
+				<div className={`avatar ${isOnline ? 'online' : ''}`}>
 					<div className="w-12 rounded-full">
 						<img src={conversation.profilePic} alt="user avatar" />
 					</div>
